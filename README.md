@@ -36,7 +36,10 @@ LotteryCoin emphasizes the power of the community and encourages users to active
 The LotteryCoin project has opened up a new direction in the field of storage blockchain. By introducing three reward mechanisms, namely example mining, coin mining, and lottery prize pool, LotteryCoin not only achieves the goal of low-carbon environmental protection, but also enhances the fairness and user participation of blockchain networks. David Wilson and Owen Roberts, with their extensive experience in the blockchain industry, have successfully created an innovative and practical blockchain project. In the future, LotteryCoin is expected to occupy a place in the field of blockchain storage and become an important force in promoting the development of green blockchain.
 
 Website:https://www.lotterycoin.top
+
 Telegram:https://t.me/LotteryCoin_top
+
 Twitter:lotterycoin_top
+
 Discord:https://discord.com/invite/pTMp9R4v2w
 
