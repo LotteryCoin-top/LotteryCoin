@@ -1,0 +1,16 @@
+[Unit]
+Description=Lottery Timelord Service for %i
+Requires=lottery-daemon@%i.service
+After=lottery-daemon@%i.service
+
+[Service]
+Type=simple
+Environment=LOTTERY_ROOT=/home/%i/.lottery/mainnet
+ExecStart=/opt/lottery/start_timelord
+User=%i
+Group=%i
+LimitNOFILE=1048576
+LimitNPROC=1048576
+
+[Install]
+WantedBy=multi-user.target
