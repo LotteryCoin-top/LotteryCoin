@@ -1,12 +1,11 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
 import json
+from decimal import Decimal
 from typing import Tuple, Optional, Dict, Any, List
 
 from chia.types.blockchain_format.sized_bytes import bytes32
 from chia.util.ints import uint64, uint32
-from chia.util.streamable import Streamable, streamable
 
 
 MOJO_PER_LOTTERY = 10**9
@@ -78,7 +77,7 @@ def check_guess_memos(amount: uint64, memo: bytes | str) -> Tuple[Optional[str],
 
         if "t" in memo_json:
             memo_json["t"] = int(memo_json["t"])
-        memo_json["m"] = float(memo_json["m"])
+        memo_json["m"] = Decimal(str(memo_json["m"]))
         if memo_json["m"] < 0.001 or memo_json["m"] > 100:
             raise ValueError("Guess multiple must be between 0.001 and 100")
         posNums = list(memo_json["v"])
@@ -96,7 +95,7 @@ def check_guess_memos(amount: uint64, memo: bytes | str) -> Tuple[Optional[str],
                     return f"Guess pos {index+1} numbers error", {}
                 nums_list[index].append(n)
         memo_json["v"] = nums_list
-        if int(total_amount * memo_json["m"] * MOJO_PER_LOTTERY) != amount:
+        if int(memo_json["m"] * total_amount * MOJO_PER_LOTTERY) != amount:
             return f"Guess amount: {amount/MOJO_PER_LOTTERY} error, must be: {total_amount * memo_json['m']}", {}
         return None, memo_json
     except json.JSONDecodeError:
