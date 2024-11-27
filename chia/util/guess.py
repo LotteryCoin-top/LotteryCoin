@@ -95,10 +95,9 @@ def check_guess_memos(amount: uint64, memo: bytes | str) -> Tuple[Optional[str],
                     return f"Guess pos {index+1} numbers error", {}
                 nums_list[index].append(n)
         memo_json["v"] = nums_list
-        multiple = Decimal(str(memo_json["m"]))
-        all_amount = int(total_amount * MOJO_PER_LOTTERY * multiple)
-        if all_amount != amount and all_amount - 1 != amount:
-            return f"Guess amount: {amount/MOJO_PER_LOTTERY} error, must be: {total_amount * multiple}", {}
+        all_amount = int(total_amount * MOJO_PER_LOTTERY * memo_json["m"])
+        if amount < all_amount - 1000000:
+            return f"Guess amount: {amount/MOJO_PER_LOTTERY} error, must be more than: {total_amount * memo_json['m']} - 1000000", {}
         return None, memo_json
     except json.JSONDecodeError:
         return f"Guess info Invalid JSON string: {memo}", {}
